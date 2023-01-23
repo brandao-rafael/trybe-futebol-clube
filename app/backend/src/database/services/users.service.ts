@@ -5,7 +5,6 @@ import Users from '../models/users.model';
 export default class userService {
   public static async login(email: string, password: string):Promise<string | null> {
     const userByEmail = await Users.findOne({ where: { email } });
-    console.log(userByEmail);
 
     if (!userByEmail) return null;
     if (!compareSync(password, userByEmail.dataValues.password)) return null;
