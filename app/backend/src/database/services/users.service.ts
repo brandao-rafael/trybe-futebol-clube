@@ -12,4 +12,10 @@ export default class userService {
     const token = sign({ id: userByEmail.id }, 'jwt_secret', { expiresIn: '1d' });
     return token;
   }
+
+  public static async getRole(id: number):Promise<string | null> {
+    const userByEmail = await Users.findOne({ where: { id } });
+    if (!userByEmail) return null;
+    return userByEmail.role;
+  }
 }

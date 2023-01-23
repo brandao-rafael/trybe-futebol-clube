@@ -6,8 +6,14 @@ export default class UserController {
     const { email, password } = req.body;
 
     const token = await UserService.login(email, password);
-    if (!token) res.status(401).send({ message: 'Incorrect email or password' });
+    if (!token) return res.status(401).send({ message: 'Incorrect email or password' });
 
-    res.status(200).json({ token });
+    return res.status(200).json({ token });
+  };
+
+  public getRole = async (req: Request, res: Response):Promise<void | Response> => {
+    const { id } = req.body.user;
+    const role = await UserService.getRole(id);
+    return res.status(200).json({ role });
   };
 }
