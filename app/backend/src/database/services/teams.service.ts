@@ -5,4 +5,13 @@ export default class TeamsService {
     const allTeams = await Teams.findAll();
     return allTeams;
   }
+
+  public static async getById(id: number) {
+    const allTeams = await Teams.findAll();
+    if (allTeams.some((team) => team.id === id)) {
+      const teamById = await Teams.findByPk(id);
+      return teamById?.dataValues;
+    }
+    return null;
+  }
 }

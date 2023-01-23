@@ -9,5 +9,6 @@ export default class Teams {
   constructor() {
     this.router = express.Router();
     this.router.get('/', teamsController.getAll);
+    this.router.get('/:id', teamsController.getById);
   }
 }
