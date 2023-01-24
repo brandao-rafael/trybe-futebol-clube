@@ -11,4 +11,11 @@ export default class MatchesService {
     });
     return matches;
   }
+
+  public static async getInprogress() {
+    const allMatches = this.getAll();
+    const filteredMatches = (await allMatches)
+      .filter((match) => match.inProgress === true);
+    return filteredMatches;
+  }
 }
