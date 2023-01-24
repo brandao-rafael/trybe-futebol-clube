@@ -12,5 +12,6 @@ export default class Matches {
     this.router.get('/', matchesController.getAll);
     this.router.post('/', validateToken, matchesController.initNewMatch);
     this.router.patch('/:id/finish', matchesController.finishMatch);
+    this.router.patch('/:id', matchesController.updateLeaderboard);
   }
 }

@@ -1,4 +1,5 @@
 import IcreateMatch from '../interfaces/IcreateMatch';
+import IupdateLeaderBoardMatch from '../interfaces/IupdateLeaderboardMatch';
 import Matches from '../models/matches.model';
 import Teams from '../models/teams.model';
 
@@ -51,6 +52,17 @@ export default class MatchesService {
 
   public static async finishMatch(id: number) {
     const dataValues = await Matches.update({ inProgress: false }, { where: { id } });
+    return dataValues;
+  }
+
+  public static async updateLeaderBoard(data: IupdateLeaderBoardMatch) {
+    const dataValues = Matches.findByPk(data.id);
+    await Matches.update({
+      homeTeamGoals: data.homeTeamGoals,
+      awayTeamGoals: data.awayTeamGoals,
+    }, {
+      where: { id: data.id },
+    });
     return dataValues;
   }
 }
