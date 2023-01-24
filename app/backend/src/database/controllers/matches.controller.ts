@@ -16,7 +16,16 @@ export default class MatchesController {
   public initNewMatch = async (req: Request, res: Response): Promise<void | Response> => {
     const data = req.body;
     const insertedMatch = await MatchesService.initNewMatch(data);
-    return res.status(201).json(insertedMatch);
+
+    switch (insertedMatch) {
+      case 'equalTeams':
+        return res.status(422)
+          .json({ message: 'It is not possible to create a match with two equal teams' });
+      case 'noTeam':
+        return res.status(404).json({ message: 'There is no team with such id!' });
+      default:
+        return res.status(201).json(insertedMatch);
+    }
   };
 
   public finishMatch = async (req: Request, res: Response): Promise<void | Response> => {

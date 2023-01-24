@@ -29,15 +29,24 @@ export default class MatchesService {
   }
 
   public static async initNewMatch(data: IcreateMatch) {
-    const { dataValues } = await Matches.create({
-      homeTeamId: data.homeTeamId,
-      awayTeamId: data.awayTeamId,
-      homeTeamGoals: data.homeTeamGoals,
-      awayTeamGoals: data.awayTeamGoals,
-      inProgress: true,
-    });
+    const allTeams = await this.getAll();
 
-    return dataValues;
+    if (data.homeTeamId === data.awayTeamId) {
+      return 'equalTeams';
+    }
+
+    if (allTeams.some((team) => team.id === data.awayTeamId)
+      && allTeams.some((team) => team.id === data.homeTeamId)) {
+      const { dataValues } = await Matches.create({
+        homeTeamId: data.homeTeamId,
+        awayTeamId: data.awayTeamId,
+        homeTeamGoals: data.homeTeamGoals,
+        awayTeamGoals: data.awayTeamGoals,
+        inProgress: true,
+      });
+      return dataValues;
+    }
+    return 'noTeam';
   }
 
   public static async finishMatch(id: number) {
