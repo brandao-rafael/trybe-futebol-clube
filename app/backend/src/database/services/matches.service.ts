@@ -39,4 +39,9 @@ export default class MatchesService {
 
     return dataValues;
   }
+
+  public static async finishMatch(id: number) {
+    const dataValues = await Matches.update({ inProgress: false }, { where: { id } });
+    return dataValues;
+  }
 }

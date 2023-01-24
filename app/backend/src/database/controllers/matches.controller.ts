@@ -18,4 +18,10 @@ export default class MatchesController {
     const insertedMatch = await MatchesService.initNewMatch(data);
     return res.status(201).json(insertedMatch);
   };
+
+  public finishMatch = async (req: Request, res: Response): Promise<void | Response> => {
+    const { id } = req.params;
+    await MatchesService.finishMatch(Number(id));
+    return res.status(200).json({ message: 'Finished' });
+  };
 }
