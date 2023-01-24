@@ -3,9 +3,10 @@ import MatchesService from '../services/matches.service';
 
 export default class MatchesController {
   public getAll = async (req: Request, res: Response): Promise<void | Response> => {
-    console.log(req);
-    if (req.query.inProgress === 'true') {
-      const matchesInProgress = await MatchesService.getInprogress();
+    if (req.query.inProgress) {
+      const { inProgress } = req.query;
+
+      const matchesInProgress = await MatchesService.getInprogress(inProgress.toString());
       return res.status(200).json(matchesInProgress);
     }
     const allMatches = await MatchesService.getAll();

@@ -12,10 +12,19 @@ export default class MatchesService {
     return matches;
   }
 
-  public static async getInprogress() {
+  public static async getInprogress(condition: string) {
+    let conditionBool = true;
     const allMatches = this.getAll();
+    console.log(condition, typeof condition);
+
+    if (condition === 'true') {
+      conditionBool = true;
+    } else {
+      conditionBool = false;
+    }
+
     const filteredMatches = (await allMatches)
-      .filter((match) => match.inProgress === true);
+      .filter((match) => match.inProgress === conditionBool);
     return filteredMatches;
   }
 }
