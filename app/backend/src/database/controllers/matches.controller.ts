@@ -12,4 +12,10 @@ export default class MatchesController {
     const allMatches = await MatchesService.getAll();
     return res.status(200).json(allMatches);
   };
+
+  public initNewMatch = async (req: Request, res: Response): Promise<void | Response> => {
+    const data = req.body;
+    const insertedMatch = await MatchesService.initNewMatch(data);
+    return res.status(201).json(insertedMatch);
+  };
 }

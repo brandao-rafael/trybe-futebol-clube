@@ -1,3 +1,4 @@
+import IcreateMatch from '../interfaces/IcreateMatch';
 import Matches from '../models/matches.model';
 import Teams from '../models/teams.model';
 
@@ -15,7 +16,6 @@ export default class MatchesService {
   public static async getInprogress(condition: string) {
     let conditionBool = true;
     const allMatches = this.getAll();
-    console.log(condition, typeof condition);
 
     if (condition === 'true') {
       conditionBool = true;
@@ -26,5 +26,17 @@ export default class MatchesService {
     const filteredMatches = (await allMatches)
       .filter((match) => match.inProgress === conditionBool);
     return filteredMatches;
+  }
+
+  public static async initNewMatch(data: IcreateMatch) {
+    const { dataValues } = await Matches.create({
+      homeTeamId: data.homeTeamId,
+      awayTeamId: data.awayTeamId,
+      homeTeamGoals: data.homeTeamGoals,
+      awayTeamGoals: data.awayTeamGoals,
+      inProgress: true,
+    });
+
+    return dataValues;
   }
 }
