@@ -48,10 +48,13 @@ Matches.init(
     },
   },
   {
-    modelName: 'matches',
     tableName: 'matches',
     underscored: true,
     timestamps: false,
     sequelize: db,
   },
+
 );
+
+Matches.belongsTo(Teams, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+Matches.belongsTo(Teams, { foreignKey: 'awayTeamId', as: 'awayTeam' });

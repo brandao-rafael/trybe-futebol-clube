@@ -20,10 +20,12 @@ Teams.init(
     },
   },
   {
-    modelName: 'teams',
     tableName: 'teams',
     underscored: true,
     timestamps: false,
     sequelize: db,
   },
 );
+
+// Teams.hasMany(Matches, { foreignKey: 'homeTeamId', as: 'homeTeamMatches' });
+// Teams.hasMany(Matches, { foreignKey: 'awayTeamId', as: 'awayTeamMatches' });

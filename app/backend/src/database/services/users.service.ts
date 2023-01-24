@@ -2,7 +2,7 @@ import { sign } from 'jsonwebtoken';
 import { compareSync } from 'bcryptjs';
 import Users from '../models/users.model';
 
-export default class userService {
+export default class UserService {
   public static async login(email: string, password: string):Promise<string | null> {
     const userByEmail = await Users.findOne({ where: { email } });
 
