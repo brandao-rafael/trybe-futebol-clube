@@ -9,5 +9,6 @@ export default class Leaderboard {
   constructor() {
     this.router = express.Router();
     this.router.get('/home', leaderboardController.getHome);
+    this.router.get('/away', leaderboardController.getAway);
   }
 }
