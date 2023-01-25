@@ -10,8 +10,14 @@ export default class LeaderboardService {
     let draws = 0;
 
     finishedHomeMatches.forEach((data) => {
-      if (data.homeTeamGoals > data.awayTeamGoals) points += 3; victory += 1;
-      if (data.homeTeamGoals === data.awayTeamGoals) points += 1; draws += 1;
+      if (data.dataValues.homeTeamGoals > data.dataValues.awayTeamGoals) {
+        points += 3;
+        victory += 1;
+      }
+      if (data.dataValues.homeTeamGoals === data.dataValues.awayTeamGoals) {
+        points += 1;
+        draws += 1;
+      }
     });
     return { points, victory, draws };
   }
@@ -60,7 +66,7 @@ export default class LeaderboardService {
         goalsFavor,
         goalsOwn,
         goalsBalance: goalsFavor - goalsOwn,
-        efficiency: (points / (totalGames * 3)) * 100,
+        efficiency: ((points / (totalGames * 3)) * 100).toFixed(2),
       };
     }));
     return allHomeTeams;
