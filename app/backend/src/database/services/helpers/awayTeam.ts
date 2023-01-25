@@ -36,7 +36,7 @@ async function getAwayGoals(id: number) {
 
   finishedAwayMatches.forEach((data) => {
     goalsFavor += data.awayTeamGoals;
-    goalsOwn += data.awayTeamGoals;
+    goalsOwn += data.homeTeamGoals;
   });
   return { goalsFavor, goalsOwn };
 }
