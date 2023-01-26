@@ -58,4 +58,33 @@ export default class LeaderboardService {
     }));
     return this.sortTeam(allAwayTeams);
   }
+
+  public static getBalance(homeTeam: Ileaderboard, awayTeam: Ileaderboard | undefined) {
+    const totalPoints = homeTeam.totalPoints + Number(awayTeam?.totalPoints);
+    const totalGamesTriplifyed = (homeTeam.totalGames + Number(awayTeam?.totalGames)) * 3;
+
+    const result = (totalPoints / totalGamesTriplifyed) * 100;
+    return result.toFixed(2);
+  }
+
+  public static async getAll() {
+    const awayTeamLeaderboard = await this.getAway();
+    const homeTeamLeaderboard = await this.getHome();
+    const leaderboard = homeTeamLeaderboard.map((homeTeam) => {
+      const awayTeam = awayTeamLeaderboard.find((team) => team.name === homeTeam.name);
+      return {
+        name: homeTeam.name,
+        totalPoints: homeTeam.totalPoints + Number(awayTeam?.totalPoints),
+        totalGames: homeTeam.totalGames + Number(awayTeam?.totalGames),
+        totalVictories: homeTeam.totalVictories + Number(awayTeam?.totalVictories),
+        totalDraws: homeTeam.totalDraws + Number(awayTeam?.totalDraws),
+        totalLosses: homeTeam.totalLosses + Number(awayTeam?.totalLosses),
+        goalsFavor: homeTeam.goalsFavor + Number(awayTeam?.goalsFavor),
+        goalsOwn: homeTeam.goalsOwn + Number(awayTeam?.goalsOwn),
+        goalsBalance: homeTeam.goalsBalance + Number(awayTeam?.goalsBalance),
+        efficiency: this.getBalance(homeTeam, awayTeam),
+      };
+    });
+    return this.sortTeam(leaderboard);
+  }
 }
