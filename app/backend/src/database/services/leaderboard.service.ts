@@ -4,7 +4,7 @@ import Teams from '../models/teams.model';
 import Ileaderboard from '../interfaces/Ileaderboard';
 
 export default class LeaderboardService {
-  public static async sortTeam(team: Ileaderboard[]) {
+  private static async sortTeam(team: Ileaderboard[]) {
     return team.sort((a, b) => {
       if (a.totalPoints !== b.totalPoints) {
         return b.totalPoints - a.totalPoints;
@@ -59,7 +59,7 @@ export default class LeaderboardService {
     return this.sortTeam(allAwayTeams);
   }
 
-  public static getBalance(homeTeam: Ileaderboard, awayTeam: Ileaderboard | undefined) {
+  private static getBalance(homeTeam: Ileaderboard, awayTeam: Ileaderboard | undefined) {
     const totalPoints = homeTeam.totalPoints + Number(awayTeam?.totalPoints);
     const totalGamesTriplifyed = (homeTeam.totalGames + Number(awayTeam?.totalGames)) * 3;
 
