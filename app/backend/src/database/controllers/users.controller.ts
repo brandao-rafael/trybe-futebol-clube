@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import IUserController from '../interfaces/IController/IUserController';
 import UserService from '../services/users.service';
 
-export default class UserController {
+export default class UserController implements IUserController {
   public login = async (req: Request, res: Response):Promise<void | Response> => {
     const { email, password } = req.body;
 

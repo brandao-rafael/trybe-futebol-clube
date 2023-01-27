@@ -1,9 +1,9 @@
-// import * as sinon from 'sinon';
+import * as sinon from 'sinon';
 import * as chai from 'chai';
-// import * as jwt from 'jsonwebtoken';
-// import { Response } from 'superagent';
-const chaiHttp = require('chai-http');
-// import Users from '../database/models/users.model';
+import { Response } from 'superagent';
+// @ts-ignore
+import chaiHttp = require('chai-http');
+import Users from '../database/models/users.model';
 import { App } from '../app';
 
 import {
@@ -11,6 +11,8 @@ import {
   noPassword,
   wrongEmail,
   wrongPassword,
+  allrightUser,
+  expectedResult,
 } from './mocks/user.mock';
 
 chai.use(chaiHttp);
@@ -20,6 +22,13 @@ const { app } = new App();
 const { expect } = chai;
 
 describe('test if route login have an expected behavior', () => {
+  let chaiHttpResponse: Response
+
+  before(async () => {
+    // return sinon.stub(Users, 'findOne').resolves({
+    //   ...expectedResult
+    // });
+  })
   it('is impossible siginIn without password', async () => {
     const result = await chai.request(app).post('/login').send(noPassword);
 

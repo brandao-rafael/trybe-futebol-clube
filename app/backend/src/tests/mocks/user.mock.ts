@@ -1,6 +1,3 @@
-import { Domain } from "domain";
-import { userInfo } from "os";
-
 export const allrightUser = {
   email: 'admin@admin.com',
   password: 'secret_admin',

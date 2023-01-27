@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import IMatchesController from '../interfaces/IController/IMatchesController';
 import MatchesService from '../services/matches.service';
 
-export default class MatchesController {
+export default class MatchesController implements IMatchesController {
   public getAll = async (req: Request, res: Response): Promise<void | Response> => {
     if (req.query.inProgress) {
       const { inProgress } = req.query;
