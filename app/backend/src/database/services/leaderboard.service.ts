@@ -2,6 +2,7 @@ import getAllHomeData from './helpers/homeTeam';
 import getAllAwayData from './helpers/awayTeam';
 import Teams from '../models/teams.model';
 import Ileaderboard from '../interfaces/Ileaderboard';
+import ILeaderboard from '../interfaces/IReturns/ILeaderboard';
 
 export default class LeaderboardService {
   private static async sortTeam(team: Ileaderboard[]) {
@@ -17,7 +18,7 @@ export default class LeaderboardService {
     });
   }
 
-  public static async getHome() {
+  public static async getHome():Promise<ILeaderboard[]> {
     const allTeams = await Teams.findAll();
     const allHomeTeams = await Promise.all(allTeams.map(async (team) => {
       const {
@@ -38,7 +39,7 @@ export default class LeaderboardService {
     return this.sortTeam(allHomeTeams);
   }
 
-  public static async getAway() {
+  public static async getAway():Promise<ILeaderboard[]> {
     const allTeams = await Teams.findAll();
     const allAwayTeams = await Promise.all(allTeams.map(async (team) => {
       const {
@@ -67,7 +68,7 @@ export default class LeaderboardService {
     return result.toFixed(2);
   }
 
-  public static async getAll() {
+  public static async getAll():Promise<ILeaderboard[]> {
     const awayTeamLeaderboard = await this.getAway();
     const homeTeamLeaderboard = await this.getHome();
     const leaderboard = homeTeamLeaderboard.map((homeTeam) => {
