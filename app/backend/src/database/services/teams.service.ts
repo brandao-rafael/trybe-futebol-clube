@@ -1,5 +1,5 @@
 import Teams from '../models/teams.model';
-import Iteam from '../interfaces/ITeams/ITeam';
+import Iteam from '../interfaces/IReturns/ITeam';
 
 export default class TeamsService {
   public static async getAll():Promise<Iteam[] | null> {

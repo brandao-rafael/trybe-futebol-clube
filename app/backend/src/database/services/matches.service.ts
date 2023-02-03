@@ -1,20 +1,21 @@
 import IcreateMatch from '../interfaces/IcreateMatch';
+import IMatch from '../interfaces/IReturns/IMatch';
 import IupdateLeaderBoardMatch from '../interfaces/IupdateLeaderboardMatch';
 import Matches from '../models/matches.model';
 import Teams from '../models/teams.model';
 
 export default class MatchesService {
-  public static async getAll() {
+  public static async getAll():Promise<IMatch[]> {
     const matches = await Matches.findAll({
       include: [
         { model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
         { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } },
       ],
     });
-    return matches;
+    return matches as unknown as IMatch[];
   }
 
-  public static async getInprogress(condition: string) {
+  public static async getInprogress(condition: string):Promise<IMatch[]> {
     let conditionBool = true;
     const allMatches = this.getAll();
 
@@ -29,7 +30,7 @@ export default class MatchesService {
     return filteredMatches;
   }
 
-  public static async initNewMatch(data: IcreateMatch) {
+  public static async initNewMatch(data: IcreateMatch):Promise<string | IMatch> {
     const allTeams = await this.getAll();
 
     if (data.homeTeamId === data.awayTeamId) {
