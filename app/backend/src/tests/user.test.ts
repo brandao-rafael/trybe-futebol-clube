@@ -24,11 +24,11 @@ const { expect } = chai;
 describe('test if route login have an expected behavior', () => {
   let chaiHttpResponse: Response
 
-  before(async () => {
-    // return sinon.stub(Users, 'findOne').resolves({
-    //   ...expectedResult
-    // });
-  })
+  // before(async () => {
+  //   return sinon.stub(Users, 'findOne').resolves({
+  //     ...expectedResult
+  //   });
+  // })
   it('is impossible siginIn without password', async () => {
     const result = await chai.request(app).post('/login').send(noPassword);
 
