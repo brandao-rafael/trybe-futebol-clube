@@ -34,11 +34,14 @@ Certifique-se de ter Docker e Docker-Compose instalados na sua máquina.
 Nota: Docker e Docker-Compose usados no desenvolvimento e execução deste projeto estavam nas versões 20.10.23 e 1.29.2, respectivamente.
 
 Clone o projeto:
-´´´
+```
 git clone git@github.com:brandao-rafael/trybe-futebol-clube.git
-
+```
 Entre no diretório do projeto:
+```
 cd trybe-futebol-clube
-
+```
 Inicie a orquestração de containers na raiz do projeto:
+```
 npm run compose:up
+```
