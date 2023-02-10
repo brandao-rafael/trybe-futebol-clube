@@ -1,7 +1,7 @@
 <h1>Trybe Futebol Club</h1>
 Este aplicativo é um dos projetos avaliados no módulo de backend do curso de desenvolvimento web na Trybe. Recebi um frontend React que exibe informações sobre jogos de futebol e classificações.
 
-E de onde vêm essas informações? Do Backend! Eu tive a tarefa de desenvolver uma API seguindo a arquitetura MSC e princípios SOLID, usando TypeScript e OOP, a partir de um frontend sem lógica para:
+E de onde vêm essas informações? Do Backend! Eu tive a tarefa de desenvolver uma API seguindo a arquitetura MSC, usando TypeScript e POO, a partir de um frontend sem lógica para:
 
 Criar e manipular um banco de dados MySQL para armazenar dados;
 Autenticar usuários através do login;
@@ -13,7 +13,7 @@ Finalizar jogos;
 Criar leaderboards classificadas e ordenadas com base no desempenho dos clubes em jogos registrados, usando 5 critérios avaliativos e separados em 3 tipos de classificação (geral, mandante e visitante);
 Orquestrar tudo isso (banco de dados, backend e frontend) em containers Docker usando Docker-Compose para executar juntos.
 
-Stacks usadas:
+# Stacks usadas:
 Node.js
 TypeScript
 Programação Orientada a Objetos
@@ -22,13 +22,13 @@ MySQL
 Sequelize
 Docker
 
-Além das Stacks acima, também foram usadas as bibliotecas:
+# Além das Stacks acima, também foram usadas as bibliotecas:
 
 Joi para validação das requisições;
 JWT para autenticação de usuários logados;
 bcrypt para criptografia e verificação de senhas armazenadas no banco de dados.
 
-Como executar localmente:
+# Como executar localmente:
 Certifique-se de ter Docker e Docker-Compose instalados na sua máquina.
 
 Nota: Docker e Docker-Compose usados no desenvolvimento e execução deste projeto estavam nas versões 20.10.23 e 1.29.2, respectivamente.
